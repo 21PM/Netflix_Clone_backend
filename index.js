@@ -38,10 +38,10 @@ app.use(express.urlencoded({extended:true}))
 app.use("/user",tokenVerificationRoute)
 app.use("/user",userRoutes)
 
-app.use(express.static(path.join(__dirname, 'netflix/build')));
+app.use(express.static(path.join(__dirname, '../netflix/dist')));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'netflix/build', 'index.html'));
+    res.sendFile(path.join(__dirname, '../netflix/dist', 'index.html'));
 });
 
 app.listen(10000,()=>{
