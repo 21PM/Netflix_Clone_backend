@@ -21,10 +21,14 @@ const userSchema = new mongoose.Schema({
 },
 {
     timestamps:true
-})
+})  
 
 
 userSchema.pre("save",function(next){
+    if(this.isModified("email")){
+        this.email = this.email.toLowerCase();
+    }
+
     if(this.isModified("password")){
         const hashedpassword =  bcrypt.hashSync(this.password,10)
         this.password = hashedpassword;
