@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const { default: mongoose } = require("mongoose");
 const cookieParser = require("cookie-parser");
+const path = require('path');   
 const userRoutes = require("./routes/userroute")
 const cors = require("cors")
 const tokenVerificationRoute = require("./routes/tokenverification")
@@ -36,6 +37,12 @@ app.use(express.urlencoded({extended:true}))
 
 app.use("/user",tokenVerificationRoute)
 app.use("/user",userRoutes)
+
+app.use(express.static(path.join(__dirname, 'netflix/build')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'netflix/build', 'index.html'));
+});
 
 app.listen(10000,()=>{
     console.log("server is up at port no 10000");
