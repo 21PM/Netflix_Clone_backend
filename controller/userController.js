@@ -99,8 +99,8 @@ const UserLogin = async(req,res)=>{
         console.log("logged in");
        res.cookie("token",token,{
                 httpOnly:true,
-                secure:true,
-                sameSite:"Lax"
+                secure:true,    
+                sameSite:'None'
         }).json({
             status:true,
             message:"You are sucessfully logged In",
