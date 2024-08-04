@@ -8,7 +8,7 @@ const authmiddleware = async(req,res,next)=>{
 
     const token = req.cookies.token;
     
-    console.log("all cookies",cookies);
+    console.log("all cookie",cookies);
     console.log("tk line 1", req.cookies.token);
     
     if(!token){
