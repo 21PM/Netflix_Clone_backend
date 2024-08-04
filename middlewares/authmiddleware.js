@@ -5,11 +5,12 @@ const dotenv = require("dotenv")
 dotenv.config()
 
 const authmiddleware = async(req,res,next)=>{
+    console.log("0");
 
     const token = req.cookies.token;
     
-    console.log("all cookie",req.cookies);
-    console.log("tk line 1", req.cookies.token);
+    console.log("1");
+    
     
     if(!token){
         return res.status(401).json({
@@ -21,6 +22,7 @@ const authmiddleware = async(req,res,next)=>{
 
     try{
         const isVerifiedToken = await jwt.verify(token,process.env.JWTSECRETKEY)  
+    console.log("2");
         
         const user  = await userModel.findById(isVerifiedToken.userId)
         if(!user){
@@ -29,6 +31,7 @@ const authmiddleware = async(req,res,next)=>{
                 message:"Please login again Invalid token"
             })
         }
+        console.log("3");
 
         req.user = user;
         

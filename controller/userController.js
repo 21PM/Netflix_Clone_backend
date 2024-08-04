@@ -73,12 +73,9 @@ const UserLogin = async(req,res)=>{
                 message:"Email Id is not register", 
             })
         }
-        console.log(user);
         
         
         const isCorrectPassword = bcrypt.compareSync(password,user[0].password)
-
-        console.log(isCorrectPassword);
         if(!isCorrectPassword){
             return res.status(401).json({
                 status:false,
@@ -99,6 +96,7 @@ const UserLogin = async(req,res)=>{
             token:token
             }
         })
+        console.log("logged in");
        res.cookie("token",token,{
                 httpOnly:true,
                 secure:true,
@@ -109,6 +107,8 @@ const UserLogin = async(req,res)=>{
             token:token,
             user:user[0]
         })
+        
+        
 
     }catch(e){
         console.log(e);
