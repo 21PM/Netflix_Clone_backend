@@ -7,10 +7,8 @@ dotenv.config()
 const authmiddleware = async(req,res,next)=>{
     console.log("0");
 
-    const token = req.headers.authorization;    
-    
-    console.log("1",token);
-
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.split(' ')[1];
     
     
     if(!token){
@@ -19,8 +17,6 @@ const authmiddleware = async(req,res,next)=>{
             message:"Please login Invalid token"
         })
     }
-
-    console.log("1.5");
 
     try{
         const isVerifiedToken = jwt.verify(token,process.env.JWTSECRETKEY)  

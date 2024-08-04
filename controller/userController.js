@@ -132,8 +132,7 @@ const UserLogout = async (req,res)=>{
                 token:null
             }
         })
-        console.log("logout 1");
-
+    
         return res.status(200).cookie("token","",{expiresIn:new Date(Date.now()),httpOnly:true}).json({
             status:true,
             message:"You are sucessfully logged Out"
