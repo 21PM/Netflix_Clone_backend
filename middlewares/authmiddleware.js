@@ -9,7 +9,8 @@ const authmiddleware = async(req,res,next)=>{
 
     const token = req.cookies.token;
     
-    console.log("1");
+    console.log("1",token);
+
     
     
     if(!token){
@@ -19,9 +20,10 @@ const authmiddleware = async(req,res,next)=>{
         })
     }
 
+    console.log("1.5");
 
     try{
-        const isVerifiedToken = await jwt.verify(token,process.env.JWTSECRETKEY)  
+        const isVerifiedToken = jwt.verify(token,process.env.JWTSECRETKEY)  
     console.log("2");
         
         const user  = await userModel.findById(isVerifiedToken.userId)
@@ -39,6 +41,8 @@ const authmiddleware = async(req,res,next)=>{
         
 
     }catch(e){
+    console.log("4");
+
         return res.json({
             status:false,
             message:"Please login again, Invalid token"
