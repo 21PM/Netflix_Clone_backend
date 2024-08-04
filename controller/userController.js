@@ -124,13 +124,16 @@ const UserLogin = async(req,res)=>{
 
 const UserLogout = async (req,res)=>{
 
-
+    console.log("logout 0");
+    
     try{
         const DeleteToken = await userModel.findByIdAndUpdate(req.user._id,{
             $set:{
                 token:null
             }
         })
+        console.log("logout 1");
+
         return res.status(200).cookie("token","",{expiresIn:new Date(Date.now()),httpOnly:true}).json({
             status:true,
             message:"You are sucessfully logged Out"
