@@ -7,7 +7,7 @@ dotenv.config()
 const authmiddleware = async(req,res,next)=>{
     console.log("0");
 
-    const token = req.headers.Authorization;    
+    const token = req.headers.authorization;    
     
     console.log("1",token);
 
