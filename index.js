@@ -17,8 +17,11 @@
     })
 
     const corsOptions = {
-        origin:process.env.FRONTEND_URL,
-        credentials: true // Include credentials
+        // origin:process.env.FRONTEND_URL,
+        // credentials: true // Include credentials
+        origin: ['https://netflix-clone-frontend-nu.vercel.app', 'http://localhost:5173/'], // Replace with your allowed origins
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true
     };
     app.use(cors(corsOptions)); // Apply CORS middleware with options
     // app.use((req, res, next) => {
