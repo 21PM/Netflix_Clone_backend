@@ -17,9 +17,7 @@ mongoose.connect(process.env.DatabaseURI).then(()=>{
 })
 
 const corsOptions = {
-    origin: function (origin, callback) {
-        callback(null, true); // Allow all origins
-    },
+    origin:process.env.FRONTEND_URL,
     credentials: true // Include credentials
 };
 app.use(cors(corsOptions)); // Apply CORS middleware with options
@@ -37,6 +35,7 @@ app.use(express.urlencoded({extended:true}))
 
 app.use("/user",tokenVerificationRoute)
 app.use("/user",userRoutes)
+
 
 app.use(express.static(path.join(__dirname, '../netflix/dist')));
 

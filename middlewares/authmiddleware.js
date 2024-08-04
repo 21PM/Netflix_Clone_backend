@@ -8,6 +8,8 @@ const authmiddleware = async(req,res,next)=>{
 
     const token = req.cookies.token;
     
+    console.log("tk",token);
+    
     if(!token){
         return res.status(401).json({
             status:false,
